@@ -6,29 +6,34 @@ public class huangHou {
 		int A[][] = new int [8][8];
 
 			nt(A,1,0);
-//		}
 			int aa = 1;
 			aa++;
-		System.out.print(java.util.Arrays.toString(A));
+//		System.out.print(java.util.Arrays.toString(A));
+		for (int k =0;k<8;k++){
+			for (int j = 0;j<8;j++){
+				System.out.print(A[k][j]);
+			}
+		System.out.println();
+		}	
 
 		
 			
 		
 	}
 	private static void nt(int[][] B,int a,int b){
-		//¼ì²âaÊÇ·ñ¹ı½ç
+		//æ£€æµ‹aæ˜¯å¦è¿‡ç•Œ
 		if (a == 8) nt(B,0,b+1);
-		//¼ì²ébÊÇ·ñ¹ı½ç
+		//æ£€æŸ¥bæ˜¯å¦è¿‡ç•Œ
 		else if (b == 8) return;
 		else{
-			if (jianCha(B,a,b)>0){//ÓĞ³åÍ»
+			if (jianCha(B,a,b)>0){//æœ‰å†²çª
 				if (a == 7 && B[0][b] == 0 && B[1][b] == 0 && B[2][b] == 0 && B[3][b] == 0 && B[4][b] == 0 && B[5][b] == 0 && B[6][b] == 0 && B[7][b] == 0){
 					int t = -1;
 					for (int i = 0;i<8;i++){
 						if (B[i][b-1] == 1){
 							t = i;
 						}
-					}//¼ì²â³öÉÏÒ»ÁĞË­µÈÓÚ1
+					}//æ£€æµ‹å‡ºä¸Šä¸€åˆ—è°ç­‰äº1
 					if (t == 7){
 						B[t][b-1] = 0;
 						for (int i = 0;i<8;i++){
@@ -40,39 +45,39 @@ public class huangHou {
 						nt(B,t+1,b-2);
 					}
 					else{
-						B[t][b-1] = 0;//ÉÏÒ»¸ö1¸Ä³É0
-						nt(B,t+1,b-1);//¼ÌĞøÏÂÒ»¸ö
+						B[t][b-1] = 0;//ä¸Šä¸€ä¸ª1æ”¹æˆ0
+						nt(B,t+1,b-1);//ç»§ç»­ä¸‹ä¸€ä¸ª
 					}
 					
 				}
 				else nt(B,a+1,b);
 			}
-			else{//Ã»ÓĞ³åÍ»
+			else{//æ²¡æœ‰å†²çª
 				B[a][b] = 1;
 				nt(B,a+1,b);
-			}//±ê×¢²¢½øĞĞÏÂÒ»¸ö
+			}//æ ‡æ³¨å¹¶è¿›è¡Œä¸‹ä¸€ä¸ª
 		}
 	}
 	private static int jianCha(int[][] B,int a,int b){
 		int cout = 0;
 		for(int i = 0;i<8;i++){
 			if (B[i][b] == 1) cout++;
-		}//ÁĞ¼ì²é
+		}//åˆ—æ£€æŸ¥
 		for(int i = 0;i<8;i++){
 			if (B[a][i] == 1) cout++;
-		}//ĞĞ¼ì²é
+		}//è¡Œæ£€æŸ¥
 		for(int i = 0;i+a<8 && i+b<8;i++){
 			if (B[i+a][i+b] == 1) cout++;
-		}//ÓÒÏÂ½Ç¼ì²é
+		}//å³ä¸‹è§’æ£€æŸ¥
 		for(int i = 0;a-i>=0 && b-i>=0;i++){
 			if (B[a-i][b-i] == 1) cout++;
-		}//×øÉÏ½Ç¼ì²é
+		}//åä¸Šè§’æ£€æŸ¥
 		for(int i = 0;a-i>=0 && b+i<8;i++){
 			if (B[a-i][b+i] == 1) cout++;
-		}//ÓÒÉÏ½Ç½Ç¼ì²é
+		}//å³ä¸Šè§’è§’æ£€æŸ¥
 		for(int i = 0;a+i<8 && b-i>=0;i++){
 			if (B[a+i][b-i] == 1) cout++;
-		}//×óÏÂ½Ç¼ì²é
+		}//å·¦ä¸‹è§’æ£€æŸ¥
 		return cout;
 	}
 
